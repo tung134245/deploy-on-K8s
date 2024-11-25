@@ -1,23 +1,19 @@
-FROM python:3.9
+FROM python:3.8
 
-# Create a folder /app if it doesn't exist,
-# the /app folder is the current working directory
+# Create a folder /app is the current working directory
 WORKDIR /app
 
+# Copy necessary files to app
+COPY ./main.py /app
 
 COPY ./requirements.txt /app
 
 COPY ./models /app/models
-COPY ./src/config.py /app
-# Copy necessary files to our app
-COPY ./src/api.py /app
 
-LABEL maintainer="luongphambao"
+# Port will be exposed
+EXPOSE 4001
 
-EXPOSE 30000
-
-# Disable pip cache to shrink the image size a little bit,
-# since it does not need to be re-installed
+# Install necessary libraries
 RUN pip install -r requirements.txt --no-cache-dir
 
-CMD ["python3","api.py","--port","30000"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "4001", "--reload"]
