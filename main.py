@@ -15,18 +15,18 @@ def pre_processing(file: bytes):
     try:
         df = pd.read_csv(io.BytesIO(file))
         numerical_features = [feature for feature in df.columns if df[feature].dtypes != 'O']
-        print("The number of numerical features is",len(numerical_features),"and they are : \n",numerical_features)
+        # print("The number of numerical features is",len(numerical_features),"and they are : \n",numerical_features)
         categorical_features = [feature for feature in df.columns if df[feature].dtypes == 'O']
-        print("The number of categorical features is",len(categorical_features),"and they are : \n",categorical_features)
+        # print("The number of categorical features is",len(categorical_features),"and they are : \n",categorical_features)
 
         #discrete numerical features 
         discrete_feature = [feature for feature in numerical_features if df[feature].nunique()<=15 and feature != 'label']
-        print("The number of discrete features is",len(discrete_feature),"and they are : \n",discrete_feature)
+        # print("The number of discrete features is",len(discrete_feature),"and they are : \n",discrete_feature)
         continuous_feature=[feature for feature in numerical_features if feature not in discrete_feature + ['label']]
-        print("The number of continuous_feature features is",len(continuous_feature),"and they are : \n",continuous_feature)
+        # print("The number of continuous_feature features is",len(continuous_feature),"and they are : \n",continuous_feature)
 
         df = pd.get_dummies(df, columns=categorical_features,drop_first=True)
-        print("This Dataframe has {} rows and {} columns after encoding".format(df.shape[0], df.shape[1]))
+        # print("This Dataframe has {} rows and {} columns after encoding".format(df.shape[0], df.shape[1]))
         x = df.drop(['label'], axis=1)
         y = df['label']
         ms = MinMaxScaler()
