@@ -4,16 +4,18 @@ FROM python:3.8
 WORKDIR /app
 
 # Copy necessary files to app
-COPY ./main.py /app
+
 
 COPY ./requirements.txt /app
-
-COPY ./models /app/models
 
 # Port will be exposed
 EXPOSE 4001
 
 # Install necessary libraries
 RUN pip install -r requirements.txt --no-cache-dir
+
+COPY ./main.py /app
+
+COPY ./models /app/models
 
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "4001", "--reload"]
