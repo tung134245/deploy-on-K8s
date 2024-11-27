@@ -27,6 +27,8 @@ python-multipart==0.0.6
 requests==2.31.0
 uvicorn[standard]==0.22.0
 missingno==0.5.0
+
+
 xgboost==2.1.2
 mlxtend==0.20.0
 keras_tuner==1.4.0
