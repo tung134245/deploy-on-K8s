@@ -1,6 +1,6 @@
 apiVersion: v2
-name: diabetes
-description: My Helm Chart for diabetes
+name: ddos
+description: My Helm Chart for ddos
 
 # A chart can be `application` or `library`,
 # we don't use `library` so often

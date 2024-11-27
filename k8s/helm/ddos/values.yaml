@@ -1,4 +1,4 @@
 image:
-  repository: luongphambao/model_serving
+  repository: bui134245619/model_serving
   tag: "latest"
   pullPolicy: Always

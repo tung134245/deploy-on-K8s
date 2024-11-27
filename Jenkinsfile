@@ -7,7 +7,7 @@ pipeline {
     }
 
     environment{
-        registry = 'luongphambao/model_serving'
+        registry = 'bui134245619/model_serving'
         registryCredential = 'dockerhub'
     }
 
@@ -19,7 +19,7 @@ pipeline {
                 }
             }
             steps {
-                echo 'Testing model correctness and requirmenets.txt'
+                echo 'Testing model correctness and requirements.txt'
                 sh 'pip install -r requirements.txt && pytest'
             }
         }
@@ -49,7 +49,7 @@ pipeline {
             steps {
                 script {
                     container('helm') {
-                        sh("helm upgrade --install diabetes ./k8s/helm/diabetes --namespace model-serving")
+                        sh("helm upgrade --install ddos ./k8s/helm/ddos --namespace model-serving")
                     }
                 }
             }
